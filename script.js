@@ -33,7 +33,7 @@ function lastFive(hustleArray) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-    // Load data first
+    
     await createHustleArray('side-hustles-v2.csv');
     
     const buttonOne = document.getElementById('button-one');
