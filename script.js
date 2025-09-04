@@ -107,4 +107,4 @@ function populateHustlesArray() {
     }
 }
 
-console.log(hustles.length);
+populateHustlesArray();
