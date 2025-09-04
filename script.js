@@ -16,7 +16,7 @@ const slots = [
     document.getElementById('numFive')
 ]
 
-loadSideHustleData('side-hustle-v2.csv');
+createHustleArray('side-hustle-v2.csv');
 
 function displayResults(hustleArray) {
     slots[0].textContent = hustleArray[0].name + " - $" + hustleArray[0].hourlyRate + "/hr (Costs: $" + hustleArray[0].costs + ")";
