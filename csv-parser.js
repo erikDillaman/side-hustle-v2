@@ -30,6 +30,12 @@ async function createHustleArray(filename) {
         const objectArray = parseCSVData(csvData);
         
         console.log(`Successfully loaded ${objectArray.length} objects from ${filename}`);
+        
+        // Auto-populate global hustles array for student convenience
+        if (typeof hustles !== 'undefined') {
+            hustles.splice(0, hustles.length, ...objectArray);
+        }
+        
         return objectArray;
         
     } catch (error) {
@@ -42,6 +48,51 @@ async function createHustleArray(filename) {
         }
         
         return []; // Return empty array on error
+    }
+}
+
+/**
+ * Helper function to safely get DOM elements for display
+ * Abstracts away the complexity of DOM selection
+ */
+function getDisplaySlots() {
+    return [
+        document.querySelector('#hustle-1 .hustle-label'),
+        document.querySelector('#hustle-2 .hustle-label'),
+        document.querySelector('#hustle-3 .hustle-label'),
+        document.querySelector('#hustle-4 .hustle-label'),
+        document.querySelector('#hustle-5 .hustle-label')
+    ];
+}
+
+/**
+ * Helper function to safely display results in DOM elements
+ * Handles error checking and prevents crashes
+ * 
+ * @param {Array} dataArray - Array of objects to display
+ * @param {Array} slots - DOM elements to display in
+ */
+function safeDisplayResults(dataArray, slots) {
+    if (!dataArray || !Array.isArray(dataArray) || dataArray.length === 0) {
+        console.warn('No data to display');
+        return;
+    }
+    
+    const maxItems = Math.min(dataArray.length, slots.length);
+    
+    for (let i = 0; i < maxItems; i++) {
+        if (slots[i] && dataArray[i]) {
+            // Use the actual properties from the data
+            const item = dataArray[i];
+            slots[i].textContent = `${item.name} - ${item.partner_org} (Impact: ${item.impact_per_hour}/hr)`;
+        }
+    }
+    
+    // Clear any remaining slots
+    for (let i = maxItems; i < slots.length; i++) {
+        if (slots[i]) {
+            slots[i].textContent = '';
+        }
     }
 }
 
