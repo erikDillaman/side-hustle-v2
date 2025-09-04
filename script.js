@@ -51,9 +51,10 @@ After School Chess Mentor,School Chess Club,4,1
 Debate Prep Coach,Debate Club,3,1
 Classroom Maker Cart Restocker,School Custodial Team,40,0.5`;
 
+
+
 /**
  * Function to populate the hustles array by reading from embedded CSV data
- * This avoids CORS issues that occur when trying to fetch local files
  */
 function populateHustlesArray() {
     try {
