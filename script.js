@@ -16,12 +16,20 @@ const slots = [
     document.querySelector('#hustle-5 .hustle-label')
 ];
 
-function displayResults(hustleArray) {
+function firstFive(hustleArray) {
     slots[0].textContent = hustleArray[0].name + " - " + hustleArray[0].partner_org + " (Impact: " + hustleArray[0].impact_per_hour + "/hr)";
     slots[1].textContent = hustleArray[1].name + " - " + hustleArray[1].partner_org + " (Impact: " + hustleArray[1].impact_per_hour + "/hr)";
     slots[2].textContent = hustleArray[2].name + " - " + hustleArray[2].partner_org + " (Impact: " + hustleArray[2].impact_per_hour + "/hr)";
     slots[3].textContent = hustleArray[3].name + " - " + hustleArray[3].partner_org + " (Impact: " + hustleArray[3].impact_per_hour + "/hr)";
     slots[4].textContent = hustleArray[4].name + " - " + hustleArray[4].partner_org + " (Impact: " + hustleArray[4].impact_per_hour + "/hr)";  
+}
+
+function lastFive(hustleArray) {
+    slots[0].textContent = hustleArray[hustles.length-1].name + " - " + hustleArray[hustles.length-1].partner_org + " (Impact: " + hustleArray[hustles.length-1].impact_per_hour + "/hr)";
+    slots[1].textContent = hustleArray[hustles.length-2].name + " - " + hustleArray[hustles.length-2].partner_org + " (Impact: " + hustleArray[hustles.length-2].impact_per_hour + "/hr)";
+    slots[2].textContent = hustleArray[hustles.length-3].name + " - " + hustleArray[hustles.length-3].partner_org + " (Impact: " + hustleArray[hustles.length-3].impact_per_hour + "/hr)";
+    slots[3].textContent = hustleArray[hustles.length-4].name + " - " + hustleArray[hustles.length-4].partner_org + " (Impact: " + hustleArray[hustles.length-4].impact_per_hour + "/hr)";
+    slots[4].textContent = hustleArray[hustles.length-5].name + " - " + hustleArray[hustles.length-5].partner_org + " (Impact: " + hustleArray[hustles.length-5].impact_per_hour + "/hr)";  
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -30,11 +38,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     const buttonOne = document.getElementById('button-one');
     if (buttonOne) {
-        buttonOne.addEventListener('click', () => displayResults(hustles));
+        buttonOne.addEventListener('click', () => firstFive(hustles));
     }
 
     const buttonTwo = document.getElementById('button-two');
     if (buttonTwo) {
-        buttonTwo.addEventListener('click', () => displayResults(hustles));
+        buttonTwo.addEventListener('click', () => lastFive(hustles));
     }
 });
