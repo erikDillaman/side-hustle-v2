@@ -16,8 +16,6 @@ const slots = [
     document.querySelector('#hustle-5 .hustle-label')
 ];
 
-createHustleArray('side-hustles-v2.csv');
-
 function displayResults(hustleArray) {
     slots[0].textContent = hustleArray[0].name + " - " + hustleArray[0].partner_org + " (Impact: " + hustleArray[0].impact_per_hour + "/hr)";
     slots[1].textContent = hustleArray[1].name + " - " + hustleArray[1].partner_org + " (Impact: " + hustleArray[1].impact_per_hour + "/hr)";
@@ -26,10 +24,17 @@ function displayResults(hustleArray) {
     slots[4].textContent = hustleArray[4].name + " - " + hustleArray[4].partner_org + " (Impact: " + hustleArray[4].impact_per_hour + "/hr)";  
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load data first
+    await createHustleArray('side-hustles-v2.csv');
+    
     const buttonOne = document.getElementById('button-one');
-    buttonOne.addEventListener('click', () => displayResults(hustles));
+    if (buttonOne) {
+        buttonOne.addEventListener('click', () => displayResults(hustles));
+    }
 
     const buttonTwo = document.getElementById('button-two');
-    buttonTwo.addEventListener('click', () => displayResults(hustles));
+    if (buttonTwo) {
+        buttonTwo.addEventListener('click', () => displayResults(hustles));
+    }
 });
